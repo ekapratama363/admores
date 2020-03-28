@@ -8,13 +8,13 @@
 
                 <li class="nav-label">Home</li>
 
-                <li> 
+                <!-- <li> 
                     <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Dashboard</span></a>
                     <ul aria-expanded="false" class="collapse">
-                        <li><a href="<?php echo base_url(); ?>overview/index">Overview </a></li>
-                        <!-- <li><a href="<?php //echo base_url(); ?>analytics/index">Google Analytics </a></li> -->
+                        <li><a href="<?php //echo base_url(); ?>overview/index">Overview </a></li>
+                        <li><a href="<?php //echo base_url(); ?>analytics/index">Google Analytics </a></li>
                     </ul>
-                </li>
+                </li> -->
 
                 <li> 
                     <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-home"></i><span class="hide-menu">Home</span></a>

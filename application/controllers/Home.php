@@ -9,6 +9,7 @@ class Home extends CI_Controller
             'Home_model', 'Home_title_model', 'Home_client_model', 
             'Home_service_model', 'Home_testimony_model', 'Home_video_model',
             'Home_blog_model', 'Home_expertise_model', 'Home_description_model',
+            'Home_category_project_model', 'Home_project_model'
             // 'Home_logo_model'
         ]);
     }
@@ -23,6 +24,8 @@ class Home extends CI_Controller
         $data['home_blog'] = $this->Home_blog_model->get_home_blog(3, 0);
         $data['home_expertise'] = $this->Home_expertise_model->get_home_expertise();
         $data['home_description'] = $this->Home_description_model->get_home_description();
+        $data['home_category_project'] = $this->Home_category_project_model->get_home_category_project();
+        $data['home_project'] = $this->Home_project_model->get_home_project();
         // $data['home_logo'] = $this->Home_logo_model->get_home_logo();
 
         $data['title'] = 'Admores - Home';

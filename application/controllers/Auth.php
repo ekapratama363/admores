@@ -20,7 +20,7 @@ class Auth extends CI_Controller {
 
     public function login()
     {
-        $this->load->view('auth/login');
+        $this->load->view('admin_panel/auth/login');
     }
     
     public function auth_login()
@@ -29,7 +29,7 @@ class Auth extends CI_Controller {
         $this->form_validation->set_rules('password', 'password', 'required');
 
         if($this->form_validation->run() === FALSE) {
-            $this->load->view('auth/login');
+            $this->load->view('admin_panel/auth/login');
         } else {
             $email = $this->input->post('email');
             $password = $this->input->post('password');
@@ -49,14 +49,14 @@ class Auth extends CI_Controller {
                     ];
 
                     $this->session->set_userdata($data);
-                    redirect(base_url("guest/index"));
+                    redirect(base_url("home_title/index"));
                 } else {
                     $this->session->set_flashdata('error', 'email or password incorrect');
-                    $this->load->view('auth/login');
+                    $this->load->view('admin_panel/auth/login');
                 }
             } else {
                 $this->session->set_flashdata('error', 'email or password incorrect');
-                $this->load->view('auth/login');
+                $this->load->view('admin_panel/auth/login');
             }
         }
     }

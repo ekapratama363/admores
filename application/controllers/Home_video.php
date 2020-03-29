@@ -7,9 +7,9 @@ class home_video extends CI_Controller {
     {
         parent::__construct();
         
-		// if($this->session->userdata('is_login') != "true"){
-		// 	redirect(base_url("/"));
-        // }
+		if($this->session->userdata('is_login') != "true"){
+			redirect(base_url("auth/login"));
+        }
         
         // for load helper
         $this->load->helper('url_helper');

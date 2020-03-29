@@ -69,4 +69,12 @@ class Home_category_project_model extends CI_Model
         return $query->result_object();
     }
 
+    public function get_home_category_project()
+    {
+        $query = $this->db->order_by('id', 'desc')
+                ->get('home_category_project'); 
+
+        return $query->result_object();
+    }
+
 }

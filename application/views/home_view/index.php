@@ -105,75 +105,30 @@
                 <p class="heading-content-p">Lorem ipsum dolor sit amet. Consectetur adipisicing elit Eaque commodi.</p>
             </div>
         </div>
+        
         <div class="projects_fillter">
             <ul class="filter list">
-                <li class="active" data-filter="*"><a href="#">All Categories</a></li>
-                <li data-filter=".research"><a href="#">Research</a></li>
-                <li data-filter=".survey"><a href="#">Survey</a></li>
-                <li data-filter=".adv"><a href="#">Advertisement</a></li>
+                <?php foreach($home_category_project as $home_category_project_value) { ?>
+                    <li data-filter="<?php echo '.' . strtolower($home_category_project_value->category); ?>"><a href="#"><?php echo $home_category_project_value->category; ?></a></li>
+                <?php } ?>
             </ul>
         </div>
+
         <div class="projects_inner row">
-            <div class="col-lg-4 col-sm-6 survey adv">
-                <div class="projects_item">
-                    <div class="item web">
-                        <a href="images/img_1.jpg" class="item-wrap" data-fancybox="gal">
-                            <span class="icon-add"></span>
-                            <img class="img-fluid" src="images/img_1.jpg">
-                        </a>
+        
+            <?php foreach($home_project as $home_project_value) { ?>
+                <div class="col-lg-4 col-sm-6 <?php echo strtolower($home_project_value->category); ?>">
+                    <div class="projects_item">
+                        <div class="item web">
+                            <a href="<?php echo base_url() . "uploads/home_project/" . $home_project_value->image; ?>" class="item-wrap" data-fancybox="gal">
+                                <span class="icon-add"></span>
+                                <img class="img-fluid" src="<?php echo base_url() . "uploads/home_project/" . $home_project_value->image; ?>">
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-sm-6 survey research">
-                <div class="projects_item">
-                    <div class="item web">
-                        <a href="images/img_2.jpg" class="item-wrap" data-fancybox="gal">
-                            <span class="icon-add"></span>
-                            <img class="img-fluid" src="images/img_2.jpg">
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6 research">
-                <div class="projects_item">
-                    <div class="item web">
-                        <a href="images/img_3.jpg" class="item-wrap" data-fancybox="gal">
-                            <span class="icon-add"></span>
-                            <img class="img-fluid" src="images/img_3.jpg">
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6 survey adv">
-                <div class="projects_item">
-                    <div class="item web">
-                        <a href="images/img_4.jpg" class="item-wrap" data-fancybox="gal">
-                            <span class="icon-add"></span>
-                            <img class="img-fluid" src="images/img_4.jpg">
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6 survey research">
-                <div class="projects_item">
-                    <div class="item web">
-                        <a href="images/img_5.jpg" class="item-wrap" data-fancybox="gal">
-                            <span class="icon-add"></span>
-                            <img class="img-fluid" src="images/img_5.jpg">
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6 survey research adv">
-                <div class="projects_item">
-                    <div class="item web">
-                        <a href="images/img_6.jpg" class="item-wrap" data-fancybox="gal">
-                            <span class="icon-add"></span>
-                            <img class="img-fluid" src="images/img_6.jpg">
-                        </a>
-                    </div>
-                </div>
-            </div>
+            <?php } ?>
+
         </div>
     </div>
 </section>

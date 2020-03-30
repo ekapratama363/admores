@@ -47,12 +47,24 @@ class About_title extends CI_Controller {
             $target_file = $target_dir . basename($filename);
         
             if (!$filename) {
-                
-                $message = 'The image filed is required.';
 
-                $this->session->set_flashdata('failed', $message);
+                $data = [
+                    'title'       => $this->input->post('title'),
+                    'description' => $this->input->post('description'),
+                    'image'       => ''//$_FILES['image']['name'],
+                ];
+                
+                $this->About_title_model->set_about_title($data);
+
+                $this->session->set_flashdata('success', 'save data successfully');
 
                 redirect(base_url("about_title/index"));
+
+                // $message = 'The image filed is required.';
+
+                // $this->session->set_flashdata('failed', $message);
+
+                // redirect(base_url("about_title/index"));
 
             } elseif ($ext != "jpg" && $ext != "png" && $ext != "jpeg" && $ext != "gif") {
                 
@@ -62,7 +74,7 @@ class About_title extends CI_Controller {
 
                 redirect(base_url("about_title/index"));
             
-            } elseif ($_FILES["image"]["size"] > 500000) {
+            } elseif ($_FILES["image"]["size"] > 1000000) {
                 
                 $message = 'Sorry, your file is too large.';
 

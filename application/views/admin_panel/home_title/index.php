@@ -82,7 +82,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <img src="<?php echo isset($value->image) ? base_url() . 'uploads/home_title/' . $value->image : ''; ?>" alt="<?php echo $value->image; ?>">
+                                                    <img src="<?php echo isset($value->image) ? base_url() . 'uploads/home_title/' . $value->image : ''; ?>" alt="<?php echo isset($value->image) ? $value->image : ''; ?>">
                                                 </div>
                                             </div>
                                         </div>

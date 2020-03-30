@@ -48,11 +48,23 @@ class Home_title extends CI_Controller {
         
             if (!$filename) {
                 
-                $message = 'The image filed is required.';
+                $data = [
+                    'title'       => $this->input->post('title'),
+                    'description' => $this->input->post('description'),
+                    'image'       => '',//$_FILES['image']['name'],
+                ];
+                
+                $this->Home_title_model->set_home_title($data);
 
-                $this->session->set_flashdata('failed', $message);
+                $this->session->set_flashdata('success', 'save data successfully');
 
                 redirect(base_url("home_title/index"));
+
+                // $message = 'The image filed is required.';
+
+                // $this->session->set_flashdata('failed', $message);
+
+                // redirect(base_url("home_title/index"));
 
             } elseif ($ext != "jpg" && $ext != "png" && $ext != "jpeg" && $ext != "gif") {
                 
@@ -62,7 +74,7 @@ class Home_title extends CI_Controller {
 
                 redirect(base_url("home_title/index"));
             
-            } elseif ($_FILES["image"]["size"] > 500000) {
+            } elseif ($_FILES["image"]["size"] > 1000000) {
                 
                 $message = 'Sorry, your file is too large.';
 

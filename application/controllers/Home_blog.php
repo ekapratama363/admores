@@ -22,7 +22,7 @@ class Home_blog extends CI_Controller {
     
     public function index()
     {
-        $data['value'] = $this->Home_blog_model->get_home_blog();
+        // $data['value'] = $this->Home_blog_model->get_home_blog();
 
         $data['page'] = 'home_blog/index';
 

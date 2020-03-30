@@ -6,7 +6,7 @@
             <h3 class="text-primary">Dashboard</h3> </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ url('/') }}">service</a></li>
                 <li class="breadcrumb-item"><a href="javascript:void(0)">Invitation</a></li>
                 <li class="breadcrumb-item active"><a href="{{ url('user') }}">service_project</a></li>
                 <li class="breadcrumb-item active">Create</li>
@@ -46,7 +46,7 @@
                                                     <label>Category</label>
                                                     
                                                     <select class="form-control" name="category" id="category">
-                                                        <option selected value="<?php echo $value->home_category_project_id; ?>"><?php echo $value->category; ?></option>
+                                                        <option selected value="<?php echo $value->service_category_project_id; ?>"><?php echo $value->category; ?></option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -97,7 +97,7 @@
             width: '100%',
 			allowClear: true,
             ajax: {
-                url:  "<?php echo base_url(); ?>home_category_project/ajax_home_category_project",
+                url:  "<?php echo base_url(); ?>service_category_project/ajax_service_category_project",
                 dataType: 'json',
                 type: 'GET',
                 delay: 250,

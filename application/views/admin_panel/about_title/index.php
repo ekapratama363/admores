@@ -75,6 +75,7 @@
                                                 <div class="form-group">
                                                     <label for="image">Image</label><br />
                                                     <input type="file" name="image" id="image">
+                                                    <input type="hidden" name="image_hidden" value="<?php echo isset($value->image) ? $value->image : ''; ?>">
                                                 </div>
                                             </div>
                                         </div>

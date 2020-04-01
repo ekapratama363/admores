@@ -51,7 +51,7 @@ class About_title extends CI_Controller {
                 $data = [
                     'title'       => $this->input->post('title'),
                     'description' => $this->input->post('description'),
-                    'image'       => ''//$_FILES['image']['name'],
+                    'image'       => $this->input->post('image_hidden'),
                 ];
                 
                 $this->About_title_model->set_about_title($data);

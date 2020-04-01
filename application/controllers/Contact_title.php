@@ -51,7 +51,7 @@ class Contact_title extends CI_Controller {
                 $data = [
                     'title'       => $this->input->post('title'),
                     'description' => $this->input->post('description'),
-                    'image'       => ''//$_FILES['image']['name'],
+                    'image'       => $this->input->post('image_hidden'),
                 ];
                 
                 $this->Contact_title_model->set_contact_title($data);

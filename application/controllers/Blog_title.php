@@ -51,7 +51,7 @@ class Blog_title extends CI_Controller {
                 $data = [
                     'title'       => $this->input->post('title'),
                     'description' => $this->input->post('description'),
-                    'image'       => ''//$_FILES['image']['name'],
+                    'image'       => $this->input->post('image_hidden'),
                 ];
                 
                 $this->Blog_title_model->set_blog_title($data);

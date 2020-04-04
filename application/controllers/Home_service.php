@@ -63,11 +63,23 @@ class Home_service extends CI_Controller {
         
             if (!$filename) {
                 
-                $message = 'The image filed is required.';
+                $data = [
+                    'title' => $this->input->post('title'),
+                    'description' => $this->input->post('description'),
+                    'image'     => '',//$_FILES['image']['name'],
+                ];
+                
+                $this->Home_service_model->set_home_service($data);
 
-                $this->session->set_flashdata('failed', $message);
+                $this->session->set_flashdata('success', 'save data successfully');
 
                 redirect(base_url("home_service/create"));
+
+                // $message = 'The image filed is required.';
+
+                // $this->session->set_flashdata('failed', $message);
+
+                // redirect(base_url("home_service/create"));
 
             } elseif ($ext != "jpg" && $ext != "png" && $ext != "jpeg" && $ext != "gif") {
                 
@@ -127,14 +139,14 @@ class Home_service extends CI_Controller {
             $this->load->view('admin_panel/app', $data);
         } else {
             
-            $filename = isset($_FILES['image']['name']) ? $_FILES['image']['name'] : NULL;
+            $filename = $_FILES['image']['name'];
 
-            if($filename === NULL) {
+            if(!$filename) {
 
                 $data = [
                     'title' => $this->input->post('title'),
                     'description' => $this->input->post('description'),
-                    // 'image' => $_FILES['image']['name'],
+                    'image' => $this->input->post('image_hidden'), //$_FILES['image']['name'],
                 ];
 
                 $this->Home_service_model->update_home_service_by_id($id, $data);

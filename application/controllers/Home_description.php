@@ -48,11 +48,23 @@ class Home_description extends CI_Controller {
         
             if (!$filename) {
                 
-                $message = 'The image filed is required.';
+                $data = [
+                    'title'       => $this->input->post('title'),
+                    'description' => $this->input->post('description'),
+                    'image'       => $this->input->post('image_hidden'),
+                ];
+                
+                $this->Home_description_model->set_home_description($data);
 
-                $this->session->set_flashdata('failed', $message);
+                $this->session->set_flashdata('success', 'save data successfully');
 
                 redirect(base_url("home_description/index"));
+
+                // $message = 'The image filed is required.';
+
+                // $this->session->set_flashdata('failed', $message);
+
+                // redirect(base_url("home_description/index"));
 
             } elseif ($ext != "jpg" && $ext != "png" && $ext != "jpeg" && $ext != "gif") {
                 

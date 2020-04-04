@@ -28,7 +28,9 @@ class Home_blog_model extends CI_Model
     {
         $match = isset($data['search']) ? $data['search'] : '';
         
-        $query = $this->db->select('*')
+        $query = $this->db->select('home_blog.id, home_blog.title, home_blog.image, 
+                                    home_blog.description, home_blog.created_by,
+                                    users.name')
                 ->from('home_blog')
                 ->join('users', 'users.id = home_blog.created_by')
                 ->where('(home_blog.title LIKE \'%'.$match.'%\' 

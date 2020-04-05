@@ -128,14 +128,14 @@ class Home_blog extends CI_Controller {
             $this->load->view('admin_panel/app', $data);
         } else {
             
-            $filename = isset($_FILES['image']['name']) ? $_FILES['image']['name'] : NULL;
+            $filename = $_FILES['image']['name'];
 
-            if($filename === NULL) {
+            if(!$filename) {
 
                 $data = [
                     'title' => $this->input->post('title'),
                     'description' => $this->input->post('description'),
-                    // 'image' => $_FILES['image']['name'],
+                    'image' => $this->input->post('image_hidden'), //$_FILES['image']['name'],
                     'created_by' => 1,
                 ];
 

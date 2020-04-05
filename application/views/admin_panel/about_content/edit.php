@@ -32,7 +32,7 @@
                         <h4 class="m-b-0 text-white">Edit</h4>
                     </div>
                     <div class="card-body">
-                        <?php echo form_open_multipart('home_blog/update'); ?>
+                        <?php echo form_open_multipart('about_content/update'); ?>
                             <div class="form-body">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -63,6 +63,7 @@
                                                 <div class="form-group">
                                                     <label for="image">Image</label><br />
                                                     <input type="file" name="image" id="image">
+                                                    <input type="hidden" value="<?php echo isset($value->image) ? $value->image : ''; ?>" name="image_hidden">
                                                 </div>
                                             </div>
                                         </div>
@@ -70,7 +71,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <img src="<?php echo isset($value->image) ? base_url() . 'uploads/home_blog/' . $value->image : ''; ?>" width='300px' height='150px' alt="<?php echo $value->image; ?>">
+                                                    <img src="<?php echo isset($value->image) ? base_url() . 'uploads/about_content/' . $value->image : ''; ?>" width='300px' height='150px' alt="<?php echo $value->image; ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -80,7 +81,7 @@
                             </div>
                             <div class="form-actions">
                                 <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
-                                <a href="<?php echo base_url(); ?>home_blog/index"><button type="button" class="btn btn-inverse">Cancel</button></a>
+                                <a href="<?php echo base_url(); ?>about_content/index"><button type="button" class="btn btn-inverse">Cancel</button></a>
                             </div>
 
                         <?php echo form_close(); ?>

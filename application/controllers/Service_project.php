@@ -130,9 +130,9 @@ class Service_project extends CI_Controller {
             $this->load->view('admin_panel/app', $data);
         } else {
             
-            $filename = isset($_FILES['image']['name']) ? $_FILES['image']['name'] : NULL;
+            $filename = $_FILES['image']['name'];
 
-            if($filename === NULL) {
+            if(!$filename) {
 
                 $data = [
                     'service_category_project_id' => $this->input->post('category'),

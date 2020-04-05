@@ -65,7 +65,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="description">Description</label><br />
-                                                    <textarea style="padding: 10px;" class="col-md-12" rows="5" name="description"><?php echo set_value('description'); ?></textarea>
+                                                    <textarea class="ckeditor" id="ckedtor" style="padding: 10px;" class="col-md-12" rows="5" name="description"><?php echo set_value('description'); ?></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -97,3 +97,12 @@
     <!-- End Container fluid  -->
 </div>
 <!-- End Page wrapper  -->
+
+<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+<script>
+    InlineEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>

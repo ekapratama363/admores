@@ -128,9 +128,9 @@ class home_video extends CI_Controller {
             $this->load->view('admin_panel/app', $data);
         } else {
             
-            $filename = isset($_FILES['video']['name']) ? $_FILES['video']['name'] : NULL;
+            $filename = $_FILES['video']['name'];
 
-            if($filename === NULL) {
+            if(!$filename) {
 
                 $data = [
                     'title' => $this->input->post('title'),

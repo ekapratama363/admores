@@ -127,9 +127,9 @@ class Service_content extends CI_Controller {
             $this->load->view('admin_panel/app', $data);
         } else {
             
-            $filename = isset($_FILES['image']['name']) ? $_FILES['image']['name'] : NULL;
+            $filename = $_FILES['image']['name'];
 
-            if($filename === NULL) {
+            if(!$filename) {
 
                 $data = [
                     'title' => $this->input->post('title'),

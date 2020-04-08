@@ -133,16 +133,16 @@ class About_team extends CI_Controller {
             $this->load->view('admin_panel/app', $data);
         } else {
             
-            $filename = isset($_FILES['image']['name']) ? $_FILES['image']['name'] : NULL;
+            $filename = $_FILES['image']['name'];
 
-            if($filename === NULL) {
+            if(!$filename) {
 
                 $data = [
                     'name' => $this->input->post('name'),
                     'position' => $this->input->post('position'),
                     'title' => $this->input->post('title'),
                     'description' => $this->input->post('description'),
-                    // 'image' => $_FILES['image']['name'],
+                    'image' => $this->input->post('image_hidden'),
                 ];
 
                 $this->About_team_model->update_about_team_by_id($id, $data);

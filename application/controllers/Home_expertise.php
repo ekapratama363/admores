@@ -80,7 +80,9 @@ class home_expertise extends CI_Controller {
         $this->form_validation->set_rules('level', 'level', 'required|numeric');
 
         if ($this->form_validation->run() == FALSE){
-            $data['page'] = 'home_expertise/edit/'.$id;
+            // var_dump(1);
+            // die();
+            $data['page'] = "home_expertise/edit/{$id}";
             
             $this->load->view('admin_panel/app', $data);
         } else {

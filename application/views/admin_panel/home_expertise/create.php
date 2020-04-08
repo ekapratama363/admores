@@ -65,7 +65,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Level</label>
-                                                    <input type="text" class="form-control" name="level" value="<?php echo set_value('level'); ?>">
+                                                    <input type="number" class="form-control" name="level" value="<?php echo set_value('level'); ?>">
                                                 </div>
                                             </div>
                                         </div>

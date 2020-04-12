@@ -46,11 +46,13 @@ class Service_project_model extends CI_Model
     public function get_service_project_by_id($id)
     {
         
-        $query = $this->db->select('*')
-                ->from('service_project')
-                ->join('service_category_project', 'service_category_project.id = service_project.service_category_project_id', 'left')
+        $query = $this->db
                 ->select('service_project.id, service_project.image, service_project.service_category_project_id, 
                             service_category_project.category')
+                ->from('service_project')
+                ->join('service_category_project', 'service_category_project.id = service_project.service_category_project_id', 'left')
+                // ->select('service_project.id, service_project.image, service_project.service_category_project_id, 
+                //             service_category_project.category')
                 ->where('service_project.id', $id)
                 ->get();
 

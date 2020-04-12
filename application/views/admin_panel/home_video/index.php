@@ -73,8 +73,27 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
+                                                    <label for="image">Image</label><br />
+                                                    <input type="file" name="image" id="image">
+                                                    <input type="hidden" name="image_hidden" value="<?php isset($value->image) ? $value->image : ''; ?>">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <img src="<?php echo isset($value->image) ? base_url() . 'uploads/home_video_image/' . $value->image : ''; ?>" alt="<?php echo isset($value->image) ? $value->image : ''; ?>">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
                                                     <label for="video">Video</label><br />
                                                     <input type="file" name="video" id="video">
+                                                    <input type="hidden" name="video_hidden" id="video_hidden" value="<?php isset($value->video) ? $value->video : ''; ?>">
                                                 </div>
                                             </div>
                                         </div>

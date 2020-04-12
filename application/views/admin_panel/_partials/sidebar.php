@@ -41,6 +41,7 @@
                         <li><a href="<?php echo base_url(); ?>about_content">About Content</a></li>
                         <li><a href="<?php echo base_url(); ?>about_detail">About Detail</a></li>
                         <li><a href="<?php echo base_url(); ?>about_detail_description">About Detail Description</a></li>
+                        <li><a href="<?php echo base_url(); ?>social_media">Social Media</a></li>
                     </ul>
                 </li>
 
@@ -52,6 +53,7 @@
                         <li><a href="<?php echo base_url(); ?>service_content">Service Content</a></li>
                         <li><a href="<?php echo base_url(); ?>service_category_project">Service Category Project</a></li>
                         <li><a href="<?php echo base_url(); ?>service_project">Service Project</a></li>
+                        <li><a href="<?php echo base_url(); ?>service_map">Service Map</a></li>
                     </ul>
                 </li>
 

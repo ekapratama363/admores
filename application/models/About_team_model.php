@@ -14,10 +14,25 @@ class About_team_model extends CI_Model
 
     public function get_about_team()
     {
-        $query = $this->db->order_by('id', 'desc')
-                ->get('about_team'); 
+        $about_team = $this->db->get('about_team')->result_array();
 
-        return $query->result_object();
+        $social_media = $this->db->get('social_media')->result_array();
+
+        $array_about_team = [];
+        foreach($about_team as $value) {
+            $array_about_team[$value['id']] = $value;
+        }
+
+        $array_social_media = [];
+        foreach($social_media as $value) {
+            $array_social_media[$value['about_team_id']][] = $value;
+        }
+
+        foreach($array_about_team as $key => $value) {
+            $array_about_team[$key]['social_media'] = isset($array_social_media[$key]) ? $array_social_media[$key] : NULL;
+        }
+        
+        return $array_about_team;
     }
 
     public function get_ajax_list_about_team($data)
@@ -56,6 +71,19 @@ class About_team_model extends CI_Model
     {
         $this->db->where(['id' => $id]);
 	    $this->db->delete('about_team');
+    }
+
+    public function ajax_get_about_team($q = NULL)
+    {
+        if($q) {
+            $this->db->like('name', $q);
+        } else {
+            $this->db->limit(15);
+        }
+
+        $query = $this->db->get('about_team');
+
+        return $query->result_object();
     }
 
 }

@@ -61,7 +61,7 @@
                             <span class="ml-auto"><?php echo $home_expertise_value->level; ?>%</span>
                         </div>
                         <div class="progress rounded-0" style="height: 10px;">
-                            <div class="progress-bar" role="progressbar" style="width: 55%;" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar" role="progressbar" style="width: <?php echo $home_expertise_value->level; ?>%;" aria-valuenow="<?php echo $home_expertise_value->level; ?>" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
                 <?php } ?>
@@ -147,7 +147,7 @@
 
                 <a href="<?php echo base_url(); ?>uploads/home_video/<?php echo $home_video->video; ?>" data-fancybox class="btn-video_38929">
                     <span><span class="icon-play"></span></span>
-                    <img src="<?php echo base_url(); ?>images/video_1.jpg" alt="Video" class="img-fluid">
+                    <img src="<?php echo base_url(); ?>uploads/home_video_image/<?php echo $home_video->image; ?>" alt="Video" class="img-fluid">
                 </a>
 
             </div>

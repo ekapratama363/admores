@@ -56,16 +56,63 @@ class home_video extends CI_Controller {
             $this->load->view('admin_panel/app', $data);
         
         } else {
-            
+            // image
+            $filename_image = $_FILES['image']['name'];
+            $ext_image = pathinfo($filename_image, PATHINFO_EXTENSION);
+            $target_dir_image = "uploads/home_video_image/";
+            $target_file_image = $target_dir_image . basename($filename_image);
+
+            // video
             $filename = $_FILES['video']['name'];
             $ext = pathinfo($filename, PATHINFO_EXTENSION);
-
             $target_dir = "uploads/home_video/";
             $target_file = $target_dir . basename($filename);
         
             if (!$filename) {
                 
+                // $data = [
+                //     'title' => $this->input->post('title'),
+                //     'image' => $_FILES['image']['name'],
+                //     'video' => $this->input->post('video_hidden') //$_FILES['video']['name'],
+                //     // 'created_by' => 1,
+                // ];
+                
+                // $this->Home_video_model->set_home_video($data);
+
+                // $this->session->set_flashdata('success', 'save data successfully');
+
+                // redirect(base_url("home_video/index"));
+
                 $message = 'The video filed is required.';
+
+                $this->session->set_flashdata('failed', $message);
+
+                redirect(base_url("home_video/index"));
+
+            } elseif(!$filename_image) {
+                
+                // $data = [
+                //     'title' => $this->input->post('title'),
+                //     'image' => $this->input->post('image_hidden'),
+                //     'video' => $_FILES['video']['name'],
+                //     // 'created_by' => 1,
+                // ];
+                
+                // $this->Home_video_model->set_home_video($data);
+
+                // $this->session->set_flashdata('success', 'save data successfully');
+
+                // redirect(base_url("home_video/index"));
+                
+                $message = 'The image filed is required.';
+
+                $this->session->set_flashdata('failed', $message);
+
+                redirect(base_url("home_video/index"));
+
+            } elseif ($ext_image != "png" && $ext_image != "jpg" && $ext_image != "jpeg" && $ext_image != "gif") {
+                
+                $message = 'The image filetype you are attempting to upload is not allowed.';
 
                 $this->session->set_flashdata('failed', $message);
 
@@ -73,15 +120,23 @@ class home_video extends CI_Controller {
 
             } elseif ($ext != "mp4" && $ext != "mkv" && $ext != "rpm") {
                 
-                $message = 'The filetype you are attempting to upload is not allowed.';
+                $message = 'The video filetype you are attempting to upload is not allowed.';
 
                 $this->session->set_flashdata('failed', $message);
 
                 redirect(base_url("home_video/index"));
             
-            } elseif ($_FILES["video"]["size"] > 1000000) {
+            } elseif ($_FILES["image"]["size"] > 500000) {
                 
-                $message = 'Sorry, your file is too large.';
+                $message = 'Sorry, your image is too large.';
+
+                $this->session->set_flashdata('failed', $message);
+
+                redirect(base_url("home_video/index"));
+
+            } elseif ($_FILES["video"]["size"] > 5000000) {
+                
+                $message = 'Sorry, your video is too large.';
 
                 $this->session->set_flashdata('failed', $message);
 
@@ -89,10 +144,12 @@ class home_video extends CI_Controller {
 
             } else {
         
-                if (move_uploaded_file($_FILES["video"]["tmp_name"], $target_file)) {
+                if (move_uploaded_file($_FILES["video"]["tmp_name"], $target_file) &&
+                    move_uploaded_file($_FILES["image"]["tmp_name"], $target_file_image)) {
 
                     $data = [
                         'title' => $this->input->post('title'),
+                        'image' => $_FILES['image']['name'],
                         'video' => $_FILES['video']['name'],
                         // 'created_by' => 1,
                     ];
@@ -134,6 +191,7 @@ class home_video extends CI_Controller {
 
                 $data = [
                     'title' => $this->input->post('title'),
+                    'image' => $this->input->post('image_hidden'),
                 ];
 
                 $this->Home_video_model->update_home_video_by_id($id, $data);

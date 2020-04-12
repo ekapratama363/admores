@@ -14,10 +14,11 @@ class Home_project_model extends CI_Model
 
     public function get_home_project()
     {
-        $query = $this->db->select('*')
+        $query = $this->db
+                ->select('home_project.id, home_project.image, home_category_project.category')
                 ->from('home_project')
                 ->join('home_category_project', 'home_category_project.id = home_project.home_category_project_id')
-                ->select('home_project.id, home_project.image, home_category_project.category')
+                // ->select('home_project.id, home_project.image, home_category_project.category')
                 ->get();
 
         return $query->result_object();

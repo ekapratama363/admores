@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class About_team extends CI_Controller {
+class Service_map extends CI_Controller {
 
     public function __construct()
     {
@@ -17,59 +17,68 @@ class About_team extends CI_Controller {
         $this->load->library('form_validation');
         $this->load->library('session');
 
-        $this->load->model('About_team_model');
+        $this->load->model('Service_map_model');
     }
     
     public function index()
     {
-        $data['value'] = $this->About_team_model->get_about_team();
+        $data['value'] = $this->Service_map_model->get_service_map();
 
-        $data['page'] = 'about_team/index';
+        $data['page'] = 'service_map/index';
 
         $this->load->view('admin_panel/app', $data);
     }
 
     public function create()
     {
-        $data['page'] = 'about_team/create';
+        $data['page'] = 'service_map/create';
 
         $this->load->view('admin_panel/app', $data);
     }
 
     public function edit($id = NULL)
     {
-        $data['page'] = 'about_team/edit';
+        $data['page'] = 'service_map/edit';
         
-        $data['value'] = $this->About_team_model->get_about_team_by_id($id);
+        $data['value'] = $this->Service_map_model->get_service_map_by_id($id);
 
         $this->load->view('admin_panel/app', $data);
     }
 
     public function store()
     {
-        $this->form_validation->set_rules('name', 'name', 'required');
-        $this->form_validation->set_rules('position', 'position', 'required');
         $this->form_validation->set_rules('title', 'title', 'required');
-        $this->form_validation->set_rules('description', 'description', 'required');
+        // $this->form_validation->set_rules('description', 'description', 'required');
 
         if ($this->form_validation->run() == FALSE){
-            $data['page'] = 'about_team/create';
+            $data['page'] = 'service_map/create';
             $this->load->view('admin_panel/app', $data);
         } else {
             
             $filename = $_FILES['image']['name'];
             $ext = pathinfo($filename, PATHINFO_EXTENSION);
 
-            $target_dir = "uploads/about_team/";
+            $target_dir = "uploads/service_map/";
             $target_file = $target_dir . basename($filename);
         
             if (!$filename) {
                 
-                $message = 'The image filed is required.';
+                $data = [
+                    'title' => $this->input->post('title'),
+                    // 'description' => $this->input->post('description'),
+                    'image'     => '',//$_FILES['image']['name'],
+                ];
+                
+                $this->Service_map_model->set_service_map($data);
 
-                $this->session->set_flashdata('failed', $message);
+                $this->session->set_flashdata('success', 'save data successfully');
 
-                redirect(base_url("about_team/create"));
+                redirect(base_url("service_map/create"));
+                // $message = 'The image filed is required.';
+
+                // $this->session->set_flashdata('failed', $message);
+
+                // redirect(base_url("service_map/create"));
 
             } elseif ($ext != "jpg" && $ext != "png" && $ext != "jpeg" && $ext != "gif") {
                 
@@ -77,7 +86,7 @@ class About_team extends CI_Controller {
 
                 $this->session->set_flashdata('failed', $message);
 
-                redirect(base_url("about_team/create"));
+                redirect(base_url("service_map/create"));
             
             } elseif ($_FILES["image"]["size"] > 500000) {
                 
@@ -85,25 +94,23 @@ class About_team extends CI_Controller {
 
                 $this->session->set_flashdata('failed', $message);
 
-                redirect(base_url("about_team/create"));
+                redirect(base_url("service_map/create"));
 
             } else {
         
                 if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
 
                     $data = [
-                        'name' => $this->input->post('name'),
-                        'position' => $this->input->post('position'),
                         'title' => $this->input->post('title'),
-                        'description' => $this->input->post('description'),
-                        'image' => $_FILES['image']['name'],
+                        // 'description' => $this->input->post('description'),
+                        'image'     => $_FILES['image']['name'],
                     ];
                     
-                    $this->About_team_model->set_about_team($data);
+                    $this->Service_map_model->set_service_map($data);
 
                     $this->session->set_flashdata('success', 'save data successfully');
     
-                    redirect(base_url("about_team/create"));
+                    redirect(base_url("service_map/create"));
 
                 } else {
 
@@ -111,7 +118,7 @@ class About_team extends CI_Controller {
 
                     $this->session->set_flashdata('failed', $message);
 
-                    redirect(base_url("about_team/create"));
+                    redirect(base_url("service_map/create"));
 
                 }
             }
@@ -122,13 +129,11 @@ class About_team extends CI_Controller {
     {
         $id = $this->input->post('id');
 
-        $this->form_validation->set_rules('name', 'name', 'required');
-        $this->form_validation->set_rules('position', 'position', 'required');
         $this->form_validation->set_rules('title', 'title', 'required');
-        $this->form_validation->set_rules('description', 'description', 'required');
+        // $this->form_validation->set_rules('description', 'description', 'required');
 
         if ($this->form_validation->run() == FALSE){
-            $data['page'] = 'about_team/edit/'.$id;
+            $data['page'] = 'service_map/edit/'.$id;
             
             $this->load->view('admin_panel/app', $data);
         } else {
@@ -138,23 +143,21 @@ class About_team extends CI_Controller {
             if(!$filename) {
 
                 $data = [
-                    'name' => $this->input->post('name'),
-                    'position' => $this->input->post('position'),
                     'title' => $this->input->post('title'),
-                    'description' => $this->input->post('description'),
-                    'image' => $this->input->post('image_hidden'),
+                    // 'description' => $this->input->post('description'),
+                    'image' => $this->input->post('image_hidden'), //$_FILES['image']['name'],
                 ];
 
-                $this->About_team_model->update_about_team_by_id($id, $data);
+                $this->Service_map_model->update_service_map_by_id($id, $data);
                 $this->session->set_flashdata('success', 'update data successfully');
 
-                redirect(base_url("about_team/index"));
+                redirect(base_url("service_map/index"));
 
             } else {
 
                 $ext = pathinfo($filename, PATHINFO_EXTENSION);
 
-                $target_dir = "uploads/about_team/";
+                $target_dir = "uploads/service_map/";
                 $target_file = $target_dir . basename($filename);
             
                 if ($ext != "jpg" && $ext != "png" && $ext != "jpeg" && $ext != "gif") {
@@ -163,7 +166,7 @@ class About_team extends CI_Controller {
 
                     $this->session->set_flashdata('failed', $message);
 
-                    redirect(base_url("about_team/index"));
+                    redirect(base_url("service_map/index"));
                 
                 } elseif ($_FILES["image"]["size"] > 500000) {
                     
@@ -171,25 +174,23 @@ class About_team extends CI_Controller {
 
                     $this->session->set_flashdata('failed', $message);
 
-                    redirect(base_url("about_team/index"));
+                    redirect(base_url("service_map/index"));
 
                 } else {
 
                     if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-                        
+
                         $data = [
-                            'name' => $this->input->post('name'),
-                            'position' => $this->input->post('position'),
                             'title' => $this->input->post('title'),
-                            'description' => $this->input->post('description'),
+                            // 'description' => $this->input->post('description'),
                             'image' => $_FILES['image']['name'],
                         ];
                         
-                        $this->About_team_model->update_about_team_by_id($id, $data);
+                        $this->Service_map_model->update_service_map_by_id($id, $data);
 
                         $this->session->set_flashdata('success', 'save data successfully');
         
-                        redirect(base_url("about_team/index"));
+                        redirect(base_url("service_map/index"));
 
                     } else {
 
@@ -197,7 +198,7 @@ class About_team extends CI_Controller {
 
                         $this->session->set_flashdata('failed', $message);
 
-                        redirect(base_url("about_team/index"));
+                        redirect(base_url("service_map/index"));
 
                     }
                 }
@@ -210,15 +211,15 @@ class About_team extends CI_Controller {
 
         $message = 'Success delete data';
 
-        $this->About_team_model->delete_about_team_by_id($id);
+        $this->Service_map_model->delete_service_map_by_id($id);
 
         $this->session->set_flashdata('success', $message);
 
-        redirect(base_url("about_team/index"));
+        redirect(base_url("service_map/index"));
         
     }
 
-    public function ajax_list_about_team()
+    public function ajax_list_service_map()
     {
         $draw   = $this->input->post('draw');
         $start  = $this->input->post('start');
@@ -240,7 +241,7 @@ class About_team extends CI_Controller {
             $array['order'] = 'desc';
         }
 
-        $totalFiltered = count($this->About_team_model->get_ajax_list_about_team($array));
+        $totalFiltered = count($this->Service_map_model->get_ajax_list_service_map($array));
 
         //check the length parameter and then take records
         if ($length > 0) {
@@ -248,24 +249,24 @@ class About_team extends CI_Controller {
             $array['length'] = $length;
         }
 
-        $posts = $this->About_team_model->get_ajax_list_about_team($array);
+        $posts = $this->Service_map_model->get_ajax_list_service_map($array);
 
         if(sizeof($posts) > 0) {
             $no = $start;
             foreach($posts as $key => $value) {        
                 $no++;
 
-                $image = "<img src='" . base_url() . "uploads/about_team/" . $value->image . "' width='50px' height='50px'>";
+                $image = "<img src='" . base_url() . "uploads/service_map/" . $value->image . "' width='50px' height='50px'>";
                 
                 $action = "
-                    <a href='".base_url()."about_team/edit/".$value->id."' 
+                    <a href='".base_url()."service_map/edit/".$value->id."' 
                         class='btn btn-success btn-sm' 
                         style='margin-right: 5px;' title='Edit'>
                         <i class='fa fa-pencil'></i>
                     </a>
 
                     <a onclick='".'return confirm("'."delete this item?".'")'."'
-                        href='".base_url()."about_team/delete/".$value->id."' class='btn btn-danger btn-sm delete-list'>
+                        href='".base_url()."service_map/delete/".$value->id."' class='btn btn-danger btn-sm delete-list'>
                         <i class='fa fa-trash'></i>
                     </a>
                 ";
@@ -284,15 +285,6 @@ class About_team extends CI_Controller {
         ];
 
         echo json_encode($json_data);
-    }
-
-    public function ajax_about_team($q = NULL)
-    {
-        $q = $this->input->get('q') ? $this->input->get('q') : NULL;
-        
-        $data = $this->About_team_model->ajax_get_about_team($q);
-
-        echo json_encode($data);
     }
 
 }

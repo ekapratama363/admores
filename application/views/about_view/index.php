@@ -165,17 +165,16 @@
         <div class="row align-items-center block__69944">
          <?php foreach($about_team as $team) { ?>
           <div class="col-lg-6 mb-5">
-            <img src="<?php echo base_url() . "uploads/about_team/" . $team->image; ?>" alt="Image" class="img-fluid mb-4 rounded">
+            <img src="<?php echo base_url() . "uploads/about_team/" . $team['image']; ?>" alt="Image" class="img-fluid mb-4 rounded">
 
-            <h3><?php echo $team->name; ?></h3>
-            <p class="text-muted"><?php echo $team->position; ?></p>
-            <p class="lead"><?php echo $team->title; ?></p>
-            <p><?php echo $team->description; ?></p>
+            <h3><?php echo $team['name']; ?></h3>
+            <p class="text-muted"><?php echo $team['position']; ?></p>
+            <p class="lead"><?php echo $team['title']; ?></p>
+            <p><?php echo $team['description']; ?></p>
             <div class="social_29128 mt-4">
-              <a href="#"><span class="icon-facebook"></span></a>
-              <a href="#"><span class="icon-twitter"></span></a>
-              <a href="#"><span class="icon-instagram"></span></a>
-              <a href="#"><span class="icon-linkedin"></span></a>
+               <?php foreach($team['social_media'] as $social_media) { ?>
+                  <a href="<?php echo strtolower($social_media['link']); ?>"><span class="icon-<?php echo strtolower($social_media['type']); ?>"></span></a>
+               <?php } ?>
             </div>
 
           </div>

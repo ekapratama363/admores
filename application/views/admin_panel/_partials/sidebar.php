@@ -29,6 +29,7 @@
                         <li><a href="<?php echo base_url(); ?>home_project">Home Project</a></li>
                         <li><a href="<?php echo base_url(); ?>home_video">Home Video</a></li>
                         <li><a href="<?php echo base_url(); ?>home_testimony">Home Testimony</a></li>
+                        <li><a href="<?php echo base_url(); ?>content_description">Content Description</a></li>
                     </ul>
                 </li>
 

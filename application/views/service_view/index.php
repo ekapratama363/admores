@@ -42,8 +42,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto text-center" style="padding-top: 20px;">
-                <h2 class="section-title">Projects we have completed</h2>
-                <p class="heading-content-p">Lorem ipsum dolor sit amet. Consectetur adipisicing elit Eaque commodi.</p>
+                <h2 class="section-title"><?php echo $content_description_projects_we_have_completed->title; ?></h2>
+                <p class="heading-content-p"><?php echo $content_description_projects_we_have_completed->description; ?></p>
             </div>
         </div>
         <div class="projects_fillter">

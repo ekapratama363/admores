@@ -75,8 +75,8 @@
     <div class="container">
         <div class="row mb-5">
             <div class="col-md-7 mx-auto text-center">
-                <h2 class="heading-content">Our Services</h2>
-                <p class="heading-content-p">Lorem ipsum dolor sit amet. Consectetur adipisicing elit Eaque commodi.</p>
+                <h2 class="heading-content"><?php echo $content_description_our_services->title; ?></h2>
+                <p class="heading-content-p"><?php echo $content_description_our_services->description; ?></p>
             </div>
         </div>
 
@@ -101,8 +101,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto text-center" style="padding-top: 20px;">
-                <h2 class="heading-content">Projects we have completed</h2>
-                <p class="heading-content-p">Lorem ipsum dolor sit amet. Consectetur adipisicing elit Eaque commodi.</p>
+                <h2 class="heading-content"><?php echo $content_description_projects_we_have_completed->title; ?></h2>
+                <p class="heading-content-p"><?php echo $content_description_projects_we_have_completed->description; ?></p>
             </div>
         </div>
         
@@ -160,8 +160,8 @@
 	<div class="container">
 		<div class="row mb-5">
             <div class="col-md-8 mx-auto text-center">
-                <h2 class="heading-content">Hear from our happy clients</h2>
-                <p class="heading-content-p">Lorem ipsum dolor sit amet. Consectetur adipisicing elit Eaque commodi.</p>
+                <h2 class="heading-content"><?php echo $content_description_happy_clients->title; ?></h2>
+                <p class="heading-content-p"><?php echo $content_description_happy_clients->description; ?></p>
             </div>
         </div>
 		<div class="testi_inner">
@@ -194,8 +194,8 @@
     <div class="container">
         <div class="row mb-5">
             <div class="col-md-7 mx-auto text-center">
-                <h2 class="heading-content">Blog</h2>
-                <p class="heading-content-p">Lorem ipsum dolor sit amet. Consectetur adipisicing elit Eaque commodi.</p>
+                <h2 class="heading-content"><?php echo $content_description_blog->title; ?></h2>
+                <p class="heading-content-p"><?php echo $content_description_blog->description; ?></p>
             </div>
         </div>
 
